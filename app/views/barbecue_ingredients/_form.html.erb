@@ -13,6 +13,7 @@
   <%= f.collection_select :barbecue_id, Barbecue.all, :id, :title %>
   <%= f.number_field :quantity %>
   <%= f.collection_select :ingredient_id, Ingredient.all, :id, :title %>
+  <%= link_to 'Your ingredient is not listed ? Create it first !', new_ingredient_path %>
   <div class="actions">
     <%= f.submit %>
   </div>
