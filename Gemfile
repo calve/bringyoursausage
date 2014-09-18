@@ -40,3 +40,5 @@ gem 'spring',        group: :development
 
 # This is for heroku
 gem 'rails_12factor', group: :production
+
+gem 'devise'
