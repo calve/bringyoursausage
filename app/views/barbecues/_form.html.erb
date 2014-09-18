@@ -1,25 +1,29 @@
-<%= form_for(@barbecue) do |f| %>
-  <% if @barbecue.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@barbecue.errors.count, "error") %> prohibited this barbecue from being saved:</h2>
+<% if not user_signed_in? %>
+  <p>Please <%= link_to 'login', new_user_session_path %></p>
+<% else %>
+  <%= form_for(@barbecue) do |f| %>
+    <% if @barbecue.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@barbecue.errors.count, "error") %> prohibited this barbecue from being saved:</h2>
 
-      <ul>
-      <% @barbecue.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+          <% @barbecue.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :begin_date %><br>
+      <%= f.date_select :begin_date %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :begin_date %><br>
-    <%= f.date_select :begin_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

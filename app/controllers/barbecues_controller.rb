@@ -27,6 +27,7 @@ class BarbecuesController < ApplicationController
   # POST /barbecues.json
   def create
     @barbecue = Barbecue.new(barbecue_params)
+    @barbecue.user = current_user
 
     respond_to do |format|
       if @barbecue.save

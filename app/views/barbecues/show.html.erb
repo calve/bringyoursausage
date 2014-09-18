@@ -6,6 +6,12 @@
 </p>
 
 <p>
+  <strong>Organised by:</strong>
+  <%= @barbecue.user.name %>
+</p>
+
+
+<p>
   <strong>Begin date:</strong>
   <%= @barbecue.begin_date %>
 </p>
@@ -14,6 +20,7 @@
   <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
     <p><%= barbecue_ingredient.ingredient.title %> (<%= barbecue_ingredient.quantity %>)</p>
   <% end %>
+  <%= link_to 'Add ingredients', new_barbecue_ingredient_path(@barbecue) %>
 </p>
 <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
 <%= link_to 'Back', barbecues_path %>
