@@ -7,6 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<h1><%= link_to 'Bring your sausage !', root_url %></h1>
+<%= link_to 'Barbecues', barbecues_path %> |
+<%= link_to 'Ingredients', ingredients_path %> |
+<%= link_to 'Barbecues Ingredients', barbecue_ingredients_path %> |
+<% if user_signed_in? %>
+  <%= link_to current_user.name, edit_user_registration_path %> (<%= current_user.email %>) |
+  <%= link_to 'Logout', user_sign_out_path %>
+<% else %>
+  <%= link_to 'Login', new_user_session_path %> |
+  <%= link_to 'Sign up', new_user_registration_path %>
+<% end %>
 
 <%= yield %>
 <br/><br/><br/>
