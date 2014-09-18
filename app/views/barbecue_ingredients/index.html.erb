@@ -1,0 +1,26 @@
+<h1>Listing quantities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @barbecue_ingredients.each do |barbecue_ingredient| %>
+      <tr>
+        <td><%= barbecue_ingredient.ingredient.title %></td>
+        <td><%= link_to barbecue_ingredient.barbecue.title, barbecue_ingredient.barbecue  %></td>
+        <td><%= barbecue_ingredient.quantity %></td>
+        <td><%= link_to 'Show', barbecue_ingredient %></td>
+        <td><%= link_to 'Edit', edit_barbecue_ingredient_path(barbecue_ingredient) %></td>
+        <td><%= link_to 'Destroy', barbecue_ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Barbecue_ingredient', new_barbecue_ingredient_path %>

@@ -1,0 +1,19 @@
+<%= form_for(@barbecue_ingredient) do |f| %>
+  <% if @barbecue_ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@barbecue_ingredient.errors.count, "error") %> prohibited this quantity from being saved:</h2>
+
+      <ul>
+      <% @barbecue_ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.collection_select :barbecue_id, Barbecue.all, :id, :title %>
+  <%= f.number_field :quantity %>
+  <%= f.collection_select :ingredient_id, Ingredient.all, :id, :title %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module BarbecueIngredientsHelper
+end

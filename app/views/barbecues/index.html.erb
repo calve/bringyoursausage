@@ -1,0 +1,27 @@
+<h1>Listing barbecues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Begin date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @barbecues.each do |barbecue| %>
+      <tr>
+        <td><%= barbecue.title %></td>
+        <td><%= barbecue.begin_date %></td>
+        <td><%= link_to 'Show', barbecue %></td>
+        <td><%= link_to 'Edit', edit_barbecue_path(barbecue) %></td>
+        <td><%= link_to 'Destroy', barbecue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Barbecue', new_barbecue_path %>
