@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :barbecues
   resources :ingredients
 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,6 +14,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/user/sign_out' => 'devise/sessions#destroy'
   end
+
+  resources :barbecues do
+      resources :supplies, shallow: true
+  end
+  resources :supplies
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

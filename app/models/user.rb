@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :barbecues
+  has_many :supply
+  has_many :provided_supply, :through => :supply
 end

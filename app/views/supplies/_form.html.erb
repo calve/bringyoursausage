@@ -1,0 +1,26 @@
+<% if not user_signed_in? %>
+  <p>Please <%= link_to 'login', new_user_session_path %></p>
+<% else %>
+    <%= form_for [@barbecue, @supply] do |f| %>
+      <% if @supply.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
+        
+        <ul>
+          <% @supply.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <h2><%= @barbecue.title %></h2>
+    <p>
+      Je ramène
+      <%= f.number_field :quantity, :placeholder => "2" %>
+      <%= f.collection_select :ingredient_id, Ingredient.joins(:barbecue_ingredient), :id, :title %>
+    </p>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
+<% end %>
