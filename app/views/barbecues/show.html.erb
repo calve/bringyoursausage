@@ -17,11 +17,25 @@
 </p>
 <p>
   <strong>Ingredients:</strong>
-  <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
-    <p><%= barbecue_ingredient.ingredient.title %> (<%= barbecue_ingredient.quantity %>)</p>
-  <% end %>
+  <ul>
+    <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
+      <li><%= barbecue_ingredient.ingredient.title %> (<%= barbecue_ingredient.quantity %>)</li>
+    <% end %>
+  </ul>
   <%= link_to 'Add ingredients', new_barbecue_ingredient_path(@barbecue) %>
 </p>
+<h2>We already have</h2>
+  <ul>
+    <% @barbecue.supply.each() do |supply| %>
+      <li><p><%= supply.quantity %> <%= supply.ingredient.title %></p></li>
+    <% end %>
+  </ul>
+<h2>Who comes ?</h2>
+  <ul>
+    <% @barbecue.supply.each() do |supply| %>
+      <li><p><%= supply.quantity %> <%= supply.ingredient.title %></p></li>
+    <% end %>
+  </ul>
+<h2><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue) %></h2>
 <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
 <%= link_to 'Back', barbecues_path %> |
-<%= link_to 'Im coming !', new_barbecue_supply_path(@barbecue) %>
