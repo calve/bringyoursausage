@@ -10,6 +10,7 @@ class BarbecuesController < ApplicationController
   # GET /barbecues/1
   # GET /barbecues/1.json
   def show
+    @attending_users = User.joins(:supply).where(supplies: {barbecue_id: @barbecue.id}).distinct
   end
 
   # GET /barbecues/new

@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h2>
   <%= @barbecue.title %>
-</p>
+</h2>
 
 <p>
   <strong>Organised by:</strong>
@@ -24,19 +23,21 @@
   </ul>
   <%= link_to 'Add ingredients', new_barbecue_ingredient_path(@barbecue) %>
 </p>
-<h2>We already have</h2>
+<h3>We already have</h3>
+<ul>
+  <% @barbecue.supply.each() do |supply| %>
+    <li><%= supply.quantity %> <%= supply.ingredient.title %></li>
+  <% end %>
+</ul>
+<h3>Who comes ?</h3>
+<% if @attending_users %>
   <ul>
-    <% @barbecue.supply.each() do |supply| %>
-      <li><p><%= supply.quantity %> <%= supply.ingredient.title %></p></li>
+    <% @attending_users.each() do |user| %>
+      <li><%= user.name %></li>
     <% end %>
   </ul>
-<h2>Who comes ?</h2>
-  <ul>
-    <% @barbecue.supply.each() do |supply| %>
-      <li><p><%= supply.quantity %> <%= supply.ingredient.title %></p></li>
-    <% end %>
-  </ul>
-<h2><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue) %></h2>
+<% end %>
+<h3><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue) %></h3>
 <% if user_signed_in? && current_user.id == @barbecue.user.id %>
           <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
 <% end %>
