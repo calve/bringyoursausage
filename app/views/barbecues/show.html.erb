@@ -37,5 +37,7 @@
     <% end %>
   </ul>
 <h2><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue) %></h2>
-<%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
-<%= link_to 'Back', barbecues_path %> |
+<% if user_signed_in? && current_user.id == @barbecue.user.id %>
+          <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
+<% end %>
+<%= link_to 'Back', barbecues_path %>
