@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Bringyoursausage</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<h1><%= link_to 'Bring your sausage !', root_url %></h1>
-<%= link_to 'Barbecues', barbecues_path %> |
-<%= link_to 'Ingredients', ingredients_path %> |
-<%= link_to 'Barbecues Ingredients', barbecue_ingredients_path %> |
-<% if user_signed_in? %>
-  <%= link_to current_user.name, edit_user_registration_path %> (<%= current_user.email %>) |
-  <%= link_to 'Logout', user_sign_out_path %>
-<% else %>
-  <%= link_to 'Login', new_user_session_path %> |
-  <%= link_to 'Sign up', new_user_registration_path %>
-<% end %>
-
-<%= yield %>
-<br/><br/><br/>
-<small>Read the <a href="https://github.com/calve/bringyoursausage">source</a></small>
-</body>
+  <head>
+    <title>Bringyoursausage</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="navbar" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to 'Bring your sausage !', root_url, class:"navbar-brand" %>
+        </div>
+        <div class="collapse navbar-collapse">
+          <div class="nav navbar-nav">
+            <ul class="nav navbar-nav">
+            <li><%= link_to 'Barbecues', barbecues_path %></li>
+            <li><%= link_to 'Ingredients', ingredients_path %></li>
+            <li><%= link_to 'Barbecues Ingredients', barbecue_ingredients_path %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to current_user.name, edit_user_registration_path %> (<%= current_user.email %>)</li>
+              <li><%= link_to 'Logout', user_sign_out_path %><li>
+            <% else %>
+              <li><%= link_to 'Login', new_user_session_path %><li>
+              <li><%= link_to 'Sign up', new_user_registration_path %><li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <br/><br/><br/>
+    <small>Read the <a href="https://github.com/calve/bringyoursausage">source</a></small>
+  </body>
 </html>
