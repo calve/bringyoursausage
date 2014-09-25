@@ -12,5 +12,38 @@
  *
  *= require rails_bootstrap_forms
  */
+$brand-primary: #594F4F;
+$brand-secondary: #547980 ;
+$brand-third: #45ADA8;
+$brand-fourth: #9DE0AD;
+$brand-fifth: #E5FCC2;
+
+$link-color: $brand-secondary;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+h1 {
+    color: $brand-primary;
+}
+
+h2 {
+    color: $brand-secondary;
+}
+
+h3 {
+    color: $brand-third;
+}
+
+h4 {
+    color: $brand-fourth;
+}
+
+.navbar {
+    li {
+        a {
+            color: $brand-primary;
+        }
+    }
+    background-color: $brand-fourth;
+}

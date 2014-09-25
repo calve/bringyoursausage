@@ -19,7 +19,7 @@
             <li><%= link_to 'Ingredients', ingredients_path %></li>
             <li><%= link_to 'Barbecues Ingredients', barbecue_ingredients_path %></li>
             <% if user_signed_in? %>
-              <li><%= link_to current_user.name, edit_user_registration_path %> (<%= current_user.email %>)</li>
+              <li><%= link_to (current_user.name+' ('+current_user.email+')' ), edit_user_registration_path %></li>
               <li><%= link_to 'Logout', user_sign_out_path %><li>
             <% else %>
               <li><%= link_to 'Login', new_user_session_path %><li>
