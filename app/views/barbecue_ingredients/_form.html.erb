@@ -1,4 +1,4 @@
-<%= form_for(@barbecue_ingredient) do |f| %>
+<%= bootstrap_form_for(@barbecue_ingredient) do |f| %>
   <% if @barbecue_ingredient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@barbecue_ingredient.errors.count, "error") %> prohibited this quantity from being saved:</h2>
@@ -10,11 +10,15 @@
       </ul>
     </div>
   <% end %>
-  <%= f.collection_select :barbecue_id, Barbecue.all, :id, :title %>
-  <%= f.number_field :quantity %>
-  <%= f.collection_select :ingredient_id, Ingredient.all, :id, :title %>
-  <%= link_to 'Your ingredient is not listed ? Create it first !', new_ingredient_path %>
-  <div class="actions">
-    <%= f.submit %>
+  <div>
+    We need
+    <%= f.number_field :quantity, hide_label: :true, placeholder: "2" %>
+    <%= f.collection_select :ingredient_id, Ingredient.all, :id, :title, hide_label: :true %>
+    at
+    <%= f.collection_select :barbecue_id, Barbecue.all, :id, :title, hide_label: :true %>
+    <%= link_to 'Your ingredient is not listed ? Create it first !', new_ingredient_path %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>

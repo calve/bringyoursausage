@@ -1,7 +1,7 @@
 <% if not user_signed_in? %>
   <p>Please <%= link_to 'login', new_user_session_path %></p>
 <% else %>
-  <%= form_for(@barbecue) do |f| %>
+  <%= bootstrap_form_for(@barbecue) do |f| %>
     <% if @barbecue.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@barbecue.errors.count, "error") %> prohibited this barbecue from being saved:</h2>
@@ -23,7 +23,7 @@
       <%= f.date_select :begin_date %>
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit :class => 'btn btn-large btn-primary'  %>
     </div>
   <% end %>
 <% end %>
