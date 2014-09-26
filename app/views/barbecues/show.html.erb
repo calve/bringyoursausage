@@ -23,7 +23,7 @@
       <li><%= link_to barbecue_ingredient.ingredient.title, edit_barbecue_ingredient_path(barbecue_ingredient) %> (<%= barbecue_ingredient.quantity %>)</li>
     <% end %>
   </ul>
-  <%= link_to 'Add ingredients', new_barbecue_barbecue_ingredient_path(@barbecue) %><%# new_barbecue_barbecue_ingredient_path is not a typo %>
+  <%= link_to 'Add ingredients', edit_barbecue_path(@barbecue) %>
 </p>
 <h3>We already have</h3>
 <ul>
@@ -41,6 +41,6 @@
 <% end %>
 <h3><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %></h3>
 <% if user_signed_in? && current_user.id == @barbecue.user.id %>
-          <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
+  <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
 <% end %>
 <%= link_to 'Back', barbecues_path %>

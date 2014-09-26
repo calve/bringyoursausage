@@ -16,7 +16,7 @@ class BarbecuesController < ApplicationController
   # GET /barbecues/new
   def new
     @barbecue = Barbecue.new
-    @barbecue.barbecue_ingredient.build  # Adds a field for an ingredient
+    3.times {@barbecue.barbecue_ingredient.build}  # Adds a field for an ingredient
   end
 
   # GET /barbecues/1/edit
