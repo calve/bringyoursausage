@@ -18,10 +18,10 @@
   <strong>Ingredients:</strong>
   <ul>
     <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
-      <li><%= barbecue_ingredient.ingredient.title %> (<%= barbecue_ingredient.quantity %>)</li>
+      <li><%= link_to barbecue_ingredient.ingredient.title, edit_barbecue_ingredient_path(barbecue_ingredient) %> (<%= barbecue_ingredient.quantity %>)</li>
     <% end %>
   </ul>
-  <%= link_to 'Add ingredients', new_barbecue_ingredient_path(@barbecue) %>
+  <%= link_to 'Add ingredients', new_barbecue_barbecue_ingredient_path(@barbecue) %><%# new_barbecue_barbecue_ingredient_path is not a typo %>
 </p>
 <h3>We already have</h3>
 <ul>

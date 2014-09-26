@@ -1,5 +1,6 @@
 class BarbecueIngredientsController < ApplicationController
   before_action :set_barbecue_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :new, :create]
 
   # GET /barbecue_ingredients
   # GET /barbecue_ingredients.json
@@ -12,13 +13,15 @@ class BarbecueIngredientsController < ApplicationController
   def show
   end
 
-  # GET /barbecue_ingredients/new
+  # GET /barbecue/1/barbecue_ingredients/new
   def new
+    @barbecue = Barbecue.find params[:barbecue_id]
     @barbecue_ingredient = BarbecueIngredient.new
   end
 
   # GET /barbecue_ingredients/1/edit
   def edit
+    @barbecue = @barbecue_ingredient.barbecue
   end
 
   # POST /barbecue_ingredients
@@ -28,7 +31,7 @@ class BarbecueIngredientsController < ApplicationController
 
     respond_to do |format|
       if @barbecue_ingredient.save
-        format.html { redirect_to @barbecue_ingredient, notice: 'Barbecue ingredient was successfully created.' }
+        format.html { redirect_to @barbecue_ingredient, notice: @barbecue_ingredient.quartity+' '+@barbecue_ingredient.ingredient.title+' were added to '+ @barbecue_ingredient.barbecue.title}
         format.json { render :show, status: :created, location: @barbecue_ingredient }
       else
         format.html { render :new }

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :barbecue_ingredients
   resources :barbecues
   resources :ingredients
 
@@ -14,6 +13,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/user/sign_out' => 'devise/sessions#destroy'
   end
+
+  resources :barbecues do
+      resources :barbecue_ingredients, shallow: true
+  end
+  resources :barbecue_ingredients
 
   resources :barbecues do
       resources :supplies, shallow: true
