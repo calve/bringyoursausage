@@ -1,23 +1,27 @@
 <p id="notice"><%= notice %></p>
-
-<h2>
-  <%= @barbecue.title %>
-</h2>
-<%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %>
-
-<h3>Barbecue details</h3>
-
-<p>
-  <h4>Organised by:</h4>  <%= @barbecue.user.name %>
-</p>
-
-
-<p>
-  <h4>Begin date:</h4>
-  <%= @barbecue.begin_date %>
-</p>
-<p>
-  <h4>Ingredients:</h4>
+<h2><%= @barbecue.title %></h2>
+<h3><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %></h3>
+<div class="container col-md-6">
+  <h3>Barbecue details</h3>
+  <p><h4>Organised by:</h4><%= @barbecue.user.name %></p>
+  <p><h4>Begin date:</h4><%= @barbecue.begin_date %></p>
+  <h3>Who comes ?</h3>
+  <% if @attending_users.count() > 0 %>
+    <ul>
+      <% @attending_users.each() do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    Nobody yet
+  <% end %>
+  <% if user_signed_in? and @barbecue.user.id == current_user.id %>
+    <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
+  <% end %>
+  <%= link_to 'Back', barbecues_path %>
+</div>
+<div class="container col-md-6">
+  <h3>Ingredients:</h3>
   <ul>
     <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
       <li><%= link_to barbecue_ingredient.ingredient.title, edit_barbecue_ingredient_path(barbecue_ingredient) %> (<%= barbecue_ingredient.quantity %>)</li>
@@ -26,23 +30,14 @@
   <% if user_signed_in? and @barbecue.user.id == current_user.id %>
     <%= link_to 'Add ingredients', edit_barbecue_path(@barbecue) %>
   <% end %>
-</p>
-<h3>We already have</h3>
-<ul>
-  <% @barbecue.supply.each() do |supply| %>
-    <li><%= supply.quantity %> <%= supply.ingredient.title %></li>
+  <h3>We already have</h3>
+  <% if @barbecue.supply.count() > 0 %>
+    <ul>
+      <% @barbecue.supply.each() do |supply| %>
+        <li><%= supply.quantity %> <%= supply.ingredient.title %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    Nothing yet
   <% end %>
-</ul>
-<h3>Who comes ?</h3>
-<% if @attending_users %>
-  <ul>
-    <% @attending_users.each() do |user| %>
-      <li><%= user.name %></li>
-    <% end %>
-  </ul>
-<% end %>
-<h3><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %></h3>
-<% if user_signed_in? and @barbecue.user.id == current_user.id %>
-  <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
-<% end %>
-<%= link_to 'Back', barbecues_path %>
+</div>
