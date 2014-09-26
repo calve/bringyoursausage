@@ -16,12 +16,12 @@ class BarbecuesController < ApplicationController
   # GET /barbecues/new
   def new
     @barbecue = Barbecue.new
-    @ingredients = Ingredient.all
+    @barbecue.barbecue_ingredient.build  # Adds a field for an ingredient
   end
 
   # GET /barbecues/1/edit
   def edit
-    @ingredients = Ingredient.all
+    @barbecue.barbecue_ingredient.build  # Adds a field for an ingredient
   end
 
   # POST /barbecues
@@ -29,6 +29,7 @@ class BarbecuesController < ApplicationController
   def create
     @barbecue = Barbecue.new(barbecue_params)
     @barbecue.user = current_user
+    @barbecue.barbecue_ingredient.build
 
     respond_to do |format|
       if @barbecue.save
@@ -73,6 +74,6 @@ class BarbecuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def barbecue_params
-      params.require(:barbecue).permit(:title, :begin_date)
+      params.require(:barbecue).permit(:title, :begin_date, barbecue_ingredient_attributes: [:id, :ingredient_id, :quantity, :_destroy])
     end
 end

@@ -14,14 +14,16 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <%= f.label :begin_date %><br>
-      <%= f.date_select :begin_date %>
-    </div>
+    <%= f.text_field :title %>
+    <%= f.date_select :begin_date %>
+    <h3>Ingredients</h3>
+    <%= f.fields_for(:barbecue_ingredient, layout: :inline) do |barbecue_ingredient| %>
+      <div class="form-inline">
+        <%= barbecue_ingredient.number_field :quantity, hide_label: :true, placeholder: "Quantity" %>
+        <%= barbecue_ingredient.collection_select :ingredient_id, Ingredient.all, :id, :title, hide_label: :true, prompt: "Select ingredient" %>
+        <%= barbecue_ingredient.check_box :_destroy %>
+      </div>
+    <% end %>
     <div class="actions">
       <%= f.submit :class => 'btn btn-large btn-primary'  %>
     </div>
