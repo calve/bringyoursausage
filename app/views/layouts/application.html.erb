@@ -15,9 +15,8 @@
         <div class="collapse navbar-collapse">
           <div class="nav navbar-nav">
             <ul class="nav navbar-nav">
-              <li <% if current_page?(:controller => 'barbecues')%>class="active"<% end %>><%= link_to 'Barbecues', barbecues_path %></li>
-              <li <% if current_page?(:controller => 'ingredients')%>class="active"<% end %>><%= link_to 'Ingredients', ingredients_path %></li>
-              <li <% if current_page?(:controller => 'barbecue_ingredients')%>class="active"<% end %>><%= link_to 'Barbecues Ingredients', barbecue_ingredients_path %></li>
+              <li <% if current_page?(:controller => '/barbecues')%>class="active"<% end %>><%= link_to 'Barbecues', barbecues_path %></li>
+              <li <% if current_page?(:controller => '/ingredients')%>class="active"<% end %>><%= link_to 'Ingredients', ingredients_path %></li>
               <% if user_signed_in? %>
                 <li><%= link_to (current_user.name+' ('+current_user.email+')' ), edit_user_registration_path %></li>
                 <li><%= link_to 'Logout', user_sign_out_path %><li>
