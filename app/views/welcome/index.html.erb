@@ -1,3 +1,21 @@
 <p>Bring your sausage helps you to organize barbecues ! </p>
 <p>Create an accout, then <%= link_to 'create your barbecue', new_barbecue_path %>. After that, you will be able to <%= link_to 'add ingredients', new_barbecue_ingredient_path %> to your barbecue </p>
-<p>Or visit an existing barbecue</p>
+<p>Or visit an existing barbecue : </p>
+<table>
+  <thead>
+    <th>Barbecue</th>
+    <th>Date</th>
+    <th>Organisator</th>
+    <th>Join</th>
+  </thead>
+  <tbody>
+    <% @barbecues.each do |barbecue| %>
+      <tr>
+        <td><%= link_to barbecue.title, barbecue %></td>
+        <td><%= barbecue.begin_date %></td>
+        <td><%= barbecue.user.name  %></td>
+        <td><%= link_to 'Join', new_barbecue_supply_path(barbecue) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
