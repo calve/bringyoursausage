@@ -34,7 +34,9 @@
   <% if @barbecue.supply.count() > 0 %>
     <ul>
       <% @barbecue.supply.each() do |supply| %>
-        <li><%= supply.quantity %> <%= supply.ingredient.title %></li>
+        <% if @contributions.include?(supply.id) %>
+          <li><%= @contributions[supply.id] %> <%= supply.ingredient.title %></li>
+        <% end %>
       <% end %>
     </ul>
   <% else %>

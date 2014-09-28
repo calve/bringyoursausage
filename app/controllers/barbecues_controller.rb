@@ -11,6 +11,8 @@ class BarbecuesController < ApplicationController
   # GET /barbecues/1.json
   def show
     @attending_users = User.joins(:supply).where(supplies: {barbecue_id: @barbecue.id}).distinct
+    # @contributions is an array associating ingredient_id to their total quantities
+    @contributions = Supply.where(supplies: {barbecue_id: @barbecue.id}).group(:ingredient_id).sum(:quantity)
   end
 
   # GET /barbecues/new
