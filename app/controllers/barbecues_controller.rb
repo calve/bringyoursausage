@@ -1,5 +1,6 @@
 class BarbecuesController < ApplicationController
   before_action :set_barbecue, only: [:show, :edit, :update, :destroy]
+  require 'rqrcode'
 
   # GET /barbecues
   # GET /barbecues.json
@@ -13,6 +14,7 @@ class BarbecuesController < ApplicationController
     @attending_users = User.joins(:supply).where(supplies: {barbecue_id: @barbecue.id}).distinct
     # @contributions is an array associating ingredient_id to their total quantities
     @contributions = Supply.where(supplies: {barbecue_id: @barbecue.id}).group(:ingredient_id).sum(:quantity)
+    @qr = RQRCode::QRCode.new(barbecue_url)
   end
 
   # GET /barbecues/new
