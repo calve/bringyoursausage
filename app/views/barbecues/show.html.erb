@@ -21,7 +21,7 @@
   <%= link_to 'Back', barbecues_path %>
 </div>
 <div class="container col-md-6">
-  <h3>Ingredients:</h3>
+  <h3>What we need</h3>
   <ul>
     <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
       <li><%= link_to barbecue_ingredient.ingredient.title, edit_barbecue_ingredient_path(barbecue_ingredient) %> (<%= barbecue_ingredient.quantity %>)</li>
