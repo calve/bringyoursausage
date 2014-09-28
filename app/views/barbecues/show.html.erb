@@ -20,7 +20,7 @@
   <% end %>
   <%= link_to 'Back', barbecues_path %>
 </div>
-<div class="container col-md-6">
+<div class="container col-md-4">
   <h3>Ingredients:</h3>
   <ul>
     <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
@@ -42,4 +42,20 @@
   <% else %>
     Nothing yet
   <% end %>
+</div>
+<div class="container col-md-2">
+  <h3>QR Code</h3>
+  <table class="qr-code">
+    <% @qr.modules.each_index do |x| -%>
+      <tr>
+        <% @qr.modules.each_index do |y| -%>
+          <% if @qr.dark?(x,y) -%>
+            <td class="black"/>
+          <% else -%>
+            <td class="white"/>
+          <% end -%>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </table>
 </div>
