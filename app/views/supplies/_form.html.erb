@@ -1,8 +1,8 @@
 <% if not user_signed_in? %>
   <p>Please <%= link_to 'login', new_user_session_path %></p>
 <% else %>
-    <%= bootstrap_form_for([@barbecue, @supply], layout: :inline) do |f| %>
-      <% if @supply.errors.any? %>
+  <%= bootstrap_form_for([@barbecue, @supply], layout: :inline) do |f| %>
+    <% if @supply.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
         
@@ -14,13 +14,17 @@
       </div>
     <% end %>
     <h2><%= @barbecue.title %></h2>
-    <p>
-      Je ramène
-      <%= f.number_field :quantity, :placeholder => "2", hide_label: :true, required: :true %>
-      <%= f.collection_select :ingredient_id, Ingredient.joins(:barbecue_ingredient), :id, :title, hide_label: :true %>
-    </p>
+    <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
+      <%= f.fields_for :supply do |form_supply| %>
+        <div class="form-inline">
+        <%= form_supply.number_field :quantity, :placeholder => barbecue_ingredient.quantity, hide_label: :true, required: :true %>
+        <%= form_supply.hidden_field :ingredient_id, value: barbecue_ingredient.ingredient.id %>
+        <%= barbecue_ingredient.ingredient.title %>
+        </div>
+      <% end %>
+    <% end %>
     <div class="actions">
       <%= f.submit %>
     </div>
-    <% end %>
+  <% end %>
 <% end %>
