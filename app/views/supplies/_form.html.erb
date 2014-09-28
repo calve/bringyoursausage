@@ -19,6 +19,9 @@
         <%= form_supply.number_field :quantity, :placeholder => barbecue_ingredient.quantity, hide_label: :true, required: :true %>
         <%= form_supply.hidden_field :ingredient_id, value: barbecue_ingredient.ingredient.id %>
         <%= barbecue_ingredient.ingredient.title %>
+        <% if @contributions.include?(barbecue_ingredient.ingredient.id) %>
+             (<%= @contributions[barbecue_ingredient.ingredient.id] %> at this time)
+        <% end %>
         </div>
       <% end %>
     <% end %>

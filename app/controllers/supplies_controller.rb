@@ -17,6 +17,7 @@ class SuppliesController < ApplicationController
   def new
     @barbecue = Barbecue.find params[:barbecue_id]
     @supply = Supply.new
+    @contributions = Supply.where(supplies: {barbecue_id: @barbecue.id}).group(:ingredient_id).sum(:quantity)
   end
 
   # GET /supplies/1/edit
