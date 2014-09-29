@@ -13,18 +13,10 @@
       </div>
     <% end %>
     <h2><%= @barbecue.title %></h2>
-    <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
-      <%= f.fields_for :supply do |form_supply| %>
-        <div class="form-inline">
-        <%= form_supply.number_field :quantity, :placeholder => barbecue_ingredient.quantity, hide_label: :true, required: :true %>
-        <%= form_supply.hidden_field :ingredient_id, value: barbecue_ingredient.ingredient.id %>
-        <%= barbecue_ingredient.ingredient.title %>
-        <% if @contributions.include?(barbecue_ingredient.ingredient.id) %>
-             (<%= @contributions[barbecue_ingredient.ingredient.id] %> at this time)
-        <% end %>
-        </div>
-      <% end %>
-    <% end %>
+    <div class="form-inline">
+      <%= f.number_field :quantity, :placeholder => "42" %>
+      <input class="form-control" name="supply[ingredient[title]]" placeholder="Chipolata"/>
+     </div>
     <div class="actions">
       <%= f.submit %>
     </div>

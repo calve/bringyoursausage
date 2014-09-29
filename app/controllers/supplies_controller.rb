@@ -27,8 +27,10 @@ class SuppliesController < ApplicationController
   # POST /supplies
   # POST /supplies.json
   def create
-    @supply = Supply.new(supply_params)
+    @ingredient = Ingredient.find_or_initialize_by(title: supply_params[:ingredient][:title])
+    @supply = Supply.new(quantity: supply_params[:quantity], ingredient: @ingredient)
     @barbecue = Barbecue.find params[:barbecue_id]
+    @supply.ingredient = @ingredient
     @supply.barbecue = @barbecue
     @supply.user = current_user
 
@@ -75,6 +77,6 @@ class SuppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supply_params
-      params[:supply].permit(:quantity, :ingredient_id)
+      params[:supply].permit(:quantity, ingredient: [:title])
     end
 end
