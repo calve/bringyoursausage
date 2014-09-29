@@ -3,11 +3,10 @@
 <% if not user_signed_in? %>
   <p>Please <%= link_to 'login', new_user_session_path %></p>
 <% else %>
-    <%= form_for @supply do |f| %>
+    <%= bootstrap_form_for @supply do |f| %>
       <% if @supply.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
-        
         <ul>
           <% @supply.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -27,5 +26,4 @@
     <% end %>
 <% end %>
 
-<%= link_to 'Show', @supply %> |
-<%= link_to 'Back', supplies_path %>
+<%= link_to 'Back to barbecue', barbecue_path(@supply.barbecue) %>
