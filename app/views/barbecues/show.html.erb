@@ -33,10 +33,12 @@
   <h3>We already have</h3>
   <% if @barbecue.supply.count() > 0 %>
     <ul>
-      <% @barbecue.supply.each() do |supply| %>
-        <% if @contributions.include?(supply.id) %>
-          <li><%= @contributions[supply.id] %> <%= supply.ingredient.title %></li>
-        <% end %>
+      <% @barbecue.supply.map(&:ingredient).uniq.each do |ingredient| %>
+        <li>
+          <% if @contributions.include?(ingredient.id) %>
+            <%= pluralize(@contributions[ingredient.id], ingredient.title) %>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   <% else %>
