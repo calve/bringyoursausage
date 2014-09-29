@@ -22,11 +22,15 @@
 </div>
 <div class="container col-md-4">
   <h3>What we need</h3>
-  <ul>
-    <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
-      <li><%= link_to barbecue_ingredient.ingredient.title, edit_barbecue_ingredient_path(barbecue_ingredient) %> (<%= barbecue_ingredient.quantity %>)</li>
-    <% end %>
-  </ul>
+  <% if @barbecue.barbecue_ingredient.count() > 0 %>
+    <ul>
+      <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
+        <li><%= link_to barbecue_ingredient.ingredient.title, edit_barbecue_ingredient_path(barbecue_ingredient) %> (<%= barbecue_ingredient.quantity %>)</li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Nothing yet</p>
+  <% end %>
   <% if user_signed_in? and @barbecue.user.id == current_user.id %>
     <%= link_to 'Add ingredients', edit_barbecue_path(@barbecue) %>
   <% end %>
