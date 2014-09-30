@@ -33,7 +33,6 @@ class BarbecuesController < ApplicationController
   def create
     @barbecue = Barbecue.new(barbecue_params)
     @barbecue.user = current_user
-    @barbecue.barbecue_ingredient.build
 
     respond_to do |format|
       if @barbecue.save
@@ -49,6 +48,13 @@ class BarbecuesController < ApplicationController
   # PATCH/PUT /barbecues/1
   # PATCH/PUT /barbecues/1.json
   def update
+    params[:barbecue][:barbecue_ingredient_attributes].each() do |index,local_params|
+      if local_params[:id]
+        barbecue_ingredient = BarbecueIngredient.find(local_params[:id])
+        barbecue_ingredient.ingredient = Ingredient.find_or_initialize_by(title: local_params[:ingredient_attributes][:title])
+        barbecue_ingredient.save
+      end
+    end
     respond_to do |format|
       if @barbecue.update(barbecue_params)
         format.html { redirect_to @barbecue, notice: 'Barbecue was successfully updated.' }
@@ -78,6 +84,21 @@ class BarbecuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def barbecue_params
-      params.require(:barbecue).permit(:title, :begin_date, barbecue_ingredient_attributes: [:id, :ingredient_id, :quantity, :_destroy])
+      params.require(:barbecue)
+        .permit(
+                :title,
+                :begin_date,
+                barbecue_ingredient_attributes:
+                [
+                 :id,
+                 :quantity,
+                 :_destroy,
+                 ingredient_attributes:
+                 [
+                  :id,
+                  :title
+                 ]
+                ]
+                )
     end
 end

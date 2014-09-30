@@ -72,6 +72,16 @@ class BarbecueIngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def barbecue_ingredient_params
-      params.require(:barbecue_ingredient).permit(:quantity, :barbecue_id, :ingredient_id)
+      params.require(:barbecue_ingredient)
+        .permit(
+                :quantity,
+                :barbecue_id,
+                :ingredient_id,
+                ingredient_attributes:
+                [
+                 :id,
+                 :title
+                ]
+                )
     end
 end
