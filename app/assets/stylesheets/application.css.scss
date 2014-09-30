@@ -83,3 +83,41 @@ h4 {
     td.black { background-color: #000; }
     td.white { background-color: #fff; }
 }
+
+
+/* Typeahead styling */
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+    margin-bottom: 0;
+}
+
+.tt-dropdown-menu {
+    @extend .dropdown-menu;
+}
+
+.tt-suggestion {
+    display: block;
+    padding: 3px 20px;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+    color: $dropdown-link-active-color;
+    background-color: $dropdown-link-active-bg;
+}
+
+.tt-suggestion.tt-is-under-cursor a {
+    color: #fff;
+}
+
+.tt-suggestion.tt-cursor {
+    color: $dropdown-link-active-color;
+    background-color: $dropdown-link-active-bg;
+}
+
+.tt-suggestion p {
+    margin: 0;
+}
+
+.twitter-typeahead {
+    width: 100%;
+}

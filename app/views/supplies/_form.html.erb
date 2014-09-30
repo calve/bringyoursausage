@@ -15,8 +15,9 @@
     <h2><%= @barbecue.title %></h2>
     <div class="form-inline">
       <%= f.number_field :quantity, :placeholder => "42" %>
-      <input class="form-control" name="supply[ingredient[title]]" placeholder="Chipolata"/>
-     </div>
+      <div class="form-group">
+        <input class="form-control typeahead" name="supply[ingredient[title]]" placeholder="Chipolata"/>
+      </div>
     <div class="actions">
       <%= f.submit %>
     </div>
