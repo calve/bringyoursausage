@@ -41,9 +41,15 @@ gem 'spring',        group: :development
 # This is for heroku
 gem 'rails_12factor', group: :production
 
+# User management
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'bootstrap_form'
-gem 'rqrcode'
 gem 'twitter-typeahead-rails'
+
+# generate qr code for barbecues urls
+gem 'rqrcode'
