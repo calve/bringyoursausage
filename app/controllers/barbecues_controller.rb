@@ -20,12 +20,17 @@ class BarbecuesController < ApplicationController
   # GET /barbecues/new
   def new
     @barbecue = Barbecue.new
-    3.times {@barbecue.barbecue_ingredient.build}  # Adds a field for an ingredient
+    3.times {
+      @barbecue.barbecue_ingredient.build
+      # Create fields for ingredients
+      @barbecue.barbecue_ingredient.last.ingredient = Ingredient.new
+    }
   end
 
   # GET /barbecues/1/edit
   def edit
     @barbecue.barbecue_ingredient.build  # Adds a field for an ingredient
+    @barbecue.barbecue_ingredient.last.ingredient = Ingredient.new
   end
 
   # POST /barbecues
@@ -33,6 +38,7 @@ class BarbecuesController < ApplicationController
   def create
     @barbecue = Barbecue.new(barbecue_params)
     @barbecue.user = current_user
+    create_ingredients
 
     respond_to do |format|
       if @barbecue.save
@@ -48,13 +54,8 @@ class BarbecuesController < ApplicationController
   # PATCH/PUT /barbecues/1
   # PATCH/PUT /barbecues/1.json
   def update
-    params[:barbecue][:barbecue_ingredient_attributes].each() do |index,local_params|
-      if local_params[:id]
-        barbecue_ingredient = BarbecueIngredient.find(local_params[:id])
-        barbecue_ingredient.ingredient = Ingredient.find_or_initialize_by(title: local_params[:ingredient_attributes][:title])
-        barbecue_ingredient.save
-      end
-    end
+    create_ingredients
+
     respond_to do |format|
       if @barbecue.update(barbecue_params)
         format.html { redirect_to @barbecue, notice: 'Barbecue was successfully updated.' }
@@ -100,5 +101,20 @@ class BarbecuesController < ApplicationController
                  ]
                 ]
                 )
+    end
+
+    def create_ingredients
+      params[:barbecue][:barbecue_ingredient_attributes].each() do |index,local_params|
+        logger.debug(local_params[:ingredient_attributes][:title])
+        if local_params[:id]
+          barbecue_ingredient = BarbecueIngredient.find(local_params[:id])
+        else
+          barbecue_ingredient = BarbecueIngredient.new()
+        end
+        barbecue_ingredient.ingredient = Ingredient.find_or_initialize_by(title: local_params[:ingredient_attributes][:title])
+        barbecue_ingredient.barbecue = @barbecue
+        barbecue_ingredient.quantity = local_params[:quantity]
+        barbecue_ingredient.save
+      end
     end
 end

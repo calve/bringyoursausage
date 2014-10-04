@@ -25,8 +25,8 @@
     </p>
 
     <h4>Ingredients</h4>
-    <%= f.fields_for :barbecue_ingredient do |builder| %>
-      <%= render "barbecue_ingredients/line_form", barbecue_ingredient: builder%>
+    <%= f.fields_for :barbecue_ingredient, @barbecue.barbecue_ingredient do |barbecue_ingredient| %>
+      <%= render "barbecue_ingredients/line_form", barbecue_ingredient: barbecue_ingredient %>
     <% end %>
     <div class="actions">
       <%= f.submit :class => 'btn btn-primary btn-lg'  %>
