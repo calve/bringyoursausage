@@ -105,16 +105,17 @@ class BarbecuesController < ApplicationController
 
     def create_ingredients
       params[:barbecue][:barbecue_ingredient_attributes].each() do |index,local_params|
-        logger.debug(local_params[:ingredient_attributes][:title])
-        if local_params[:id]
-          barbecue_ingredient = BarbecueIngredient.find(local_params[:id])
-        else
-          barbecue_ingredient = BarbecueIngredient.new()
+        if !(local_params[:quantity].blank?) && local_params[:ingredient_attributes][:title]
+          if local_params[:id]
+            barbecue_ingredient = BarbecueIngredient.find(local_params[:id])
+          else
+            barbecue_ingredient = BarbecueIngredient.new()
+          end
+          barbecue_ingredient.ingredient = Ingredient.find_or_initialize_by(title: local_params[:ingredient_attributes][:title])
+          barbecue_ingredient.barbecue = @barbecue
+          barbecue_ingredient.quantity = local_params[:quantity]
+          barbecue_ingredient.save
         end
-        barbecue_ingredient.ingredient = Ingredient.find_or_initialize_by(title: local_params[:ingredient_attributes][:title])
-        barbecue_ingredient.barbecue = @barbecue
-        barbecue_ingredient.quantity = local_params[:quantity]
-        barbecue_ingredient.save
       end
     end
 end
