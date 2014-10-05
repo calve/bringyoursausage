@@ -8,7 +8,10 @@
     <div><%= f.check_box :remember_me, hide_label: :true %></div>
   <% end %>
 
-  <div><%= f.submit "Log in"%></div>
+  <%= f.submit "Log in"%>
 <% end %>
+<%= link_to "Connect with Facebook", user_omniauth_authorize_path("facebook"), class: "btn btn-primary" %><br/>
 
+<small>
 <%= render "devise/shared/links" %>
+</small>
