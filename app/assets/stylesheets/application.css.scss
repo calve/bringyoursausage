@@ -47,6 +47,11 @@ h4 {
         :hover {
             background-color: $brand-secondary !important;
         }
+        li {
+            :hover {
+                background-color: $brand-primary !important;
+            }
+        }
     }
     .active {
         background-color: $brand-third;
