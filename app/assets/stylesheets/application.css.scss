@@ -12,10 +12,11 @@
  *
  *= require rails_bootstrap_forms
  */
-$brand-primary: #594F4F;
+
+$brand-primary: #45ADA8;
 $brand-secondary: #547980 ;
-$brand-third: #45ADA8;
-$brand-fourth: #9DE0AD;
+$brand-third: #9DE0AD;
+$brand-fourth: #594F4F;
 $brand-fifth: #E5FCC2;
 
 $link-color: $brand-secondary;
@@ -42,21 +43,22 @@ h4 {
 .navbar {
     li {
         a {
-            color: $brand-primary;
+            color: black;
         }
         :hover {
-            background-color: $brand-secondary !important;
+            background-color: $brand-third !important;
         }
         li {
             :hover {
-                background-color: $brand-primary !important;
+                background-color: $brand-third !important;
             }
         }
     }
     .active {
-        background-color: $brand-third;
+        background-color: $brand-secondary;
+        color:$brand-primary;
     }
-    background-color: $brand-fourth;
+    background-color: $brand-primary;
 }
 
 td, th {
