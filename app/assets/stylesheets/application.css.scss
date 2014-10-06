@@ -134,3 +134,7 @@ h4 {
 .facebook-connect{
     background-color: $facebook-color;
 }
+
+input:focus:invalid{
+    border-color:red;
+}

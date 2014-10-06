@@ -3,11 +3,7 @@
     <p>Bring your sausage helps you to organize barbecues by telling your friends what they need to bring ! </p>
     <div class="container">
       <%= link_to 'Create a new event', new_barbecue_path, class: "btn btn-lg btn-primary" %>
-  </div>
-    <% if not user_signed_in? %>
-      <%= link_to "Login",  new_user_session_path, class: "btn btn-success" %>
-      <%= link_to "Connect via Facebook",  user_omniauth_authorize_path("facebook"), class: "btn btn-primary" %>
-    <% end %>
+    </div>
   </div>
 </div>
 <div class="container col-md-8">
@@ -15,17 +11,17 @@
   <table>
     <thead>
       <th>Barbecue</th>
+      <th>Join</th>
       <th>Date</th>
       <th>Organisator</th>
-      <th>Join</th>
     </thead>
     <tbody>
       <% @barbecues.each do |barbecue| %>
         <tr>
           <td><%= link_to barbecue.title, barbecue %></td>
+          <td><%= link_to 'Join', new_barbecue_supply_path(barbecue), class: "btn btn-info btn-sm" %></td>
           <td><%= barbecue.begin_date %></td>
           <td><%= barbecue.user.name  %></td>
-          <td><%= link_to 'Join', new_barbecue_supply_path(barbecue) %></td>
         </tr>
       <% end %>
     </tbody>

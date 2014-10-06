@@ -1,6 +1,6 @@
 class SuppliesController < ApplicationController
   before_action :set_supply, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :new, :create]
+  before_action :authenticate_user!, only: [:edit, :create]
 
   # GET /supplies
   # GET /supplies.json
