@@ -1,49 +1,61 @@
-<% if not user_signed_in? %>
-  <p>Please <%= link_to 'login', new_user_session_path %></p>
-<% else %>
-  <%= bootstrap_form_for(@barbecue) do |f| %>
-    <% if @barbecue.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@barbecue.errors.count, "error") %> prohibited this barbecue from being saved:</h2>
+<div class="container col-md-8">
+<%= bootstrap_form_for(@barbecue) do |f| %>
+  <% if @barbecue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@barbecue.errors.count, "error") %> prohibited this barbecue from being saved:</h2>
 
-        <ul>
-          <% @barbecue.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= f.text_field :title, hide_label: true, placeholder: "Titre" %>
-    <h3>Barbecue details</h3>
-
-    <p>
-      <h4>Organised by:</h4>  <%= current_user.name %>
-    </p>
-    <p>
-      <h4>Begin date :</h4>
-      <%= f.date_select :begin_date, hide_label: true %>
-    </p>
-
-    <h4>Ingredients</h4>
-    <%= f.fields_for :barbecue_ingredient, @barbecue.barbecue_ingredient do |barbecue_ingredient| %>
-      <%= render "barbecue_ingredients/line_form", barbecue_ingredient: barbecue_ingredient %>
-    <% end %>
-    <div class="actions">
-      <%= f.submit :class => 'btn btn-primary btn-lg'  %>
+      <ul>
+        <% @barbecue.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-  <h3>We already have</h3>
+  <%= f.text_field :title, hide_label: true, placeholder: "Titre" %>
+  <h3>Barbecue details</h3>
+
+  <p>
+    <h4>Organised by:</h4>  <%= current_user.name if user_signed_in? %>
+  </p>
+  <p>
+    <h4>Begin date :</h4>
+    <%= f.date_select :begin_date, hide_label: true %>
+  </p>
+
+  <h4>Ingredients</h4>
+  <%= f.fields_for :barbecue_ingredient, @barbecue.barbecue_ingredient do |barbecue_ingredient| %>
+    <%= render "barbecue_ingredients/line_form", barbecue_ingredient: barbecue_ingredient %>
+  <% end %>
+  <div class="actions">
+    <% if user_signed_in? %>
+      <%= f.submit :class => 'btn btn-success btn-lg'  %>
+    <% else %>
+      <div class="btn-group-vertical">
+      <%= link_to "Please login to save",  new_user_session_path, class: "btn btn-success btn-lg" %><%= link_to "Connect via Facebook",  user_omniauth_authorize_path("facebook"), class: "btn btn-primary btn-xs facebook-connect" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+</div>
+<div class="container col-md-4">
+<h3>We already have</h3>
+<% if @barbecue.supply.count() > 0 %>
+<ul>
+  <% @barbecue.supply.each() do |supply| %>
+    <li><%= supply.quantity %> <%= supply.ingredient.title %></li>
+  <% end %>
+</ul>
+<% else %>
+Nothing yet
+<% end %>
+<h3>Who comes ?</h3>
+<% if @attending_users %>
   <ul>
-    <% @barbecue.supply.each() do |supply| %>
-      <li><%= supply.quantity %> <%= supply.ingredient.title %></li>
+    <% @attending_users.each() do |user| %>
+      <li><%= user.name %></li>
     <% end %>
   </ul>
-  <h3>Who comes ?</h3>
-  <% if @attending_users %>
-    <ul>
-      <% @attending_users.each() do |user| %>
-        <li><%= user.name %></li>
-      <% end %>
-    </ul>
-  <% end %>
+<% else %>
+  <p>Nobody yet</p>
 <% end %>
+</div>

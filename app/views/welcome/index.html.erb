@@ -1,21 +1,33 @@
-<p>Bring your sausage helps you to organize barbecues by telling your friends what they need to bring ! </p>
-<p><%= link_to 'Create an account', new_user_registration_path %>, then <%= link_to 'create your barbecue', new_barbecue_path %>. After that, you will be able to <%= link_to 'add necessary ingredients', new_barbecue_ingredient_path %> to your barbecue </p>
-<h2>Join an existing barbecue</h2>
-<table>
-  <thead>
-    <th>Barbecue</th>
-    <th>Date</th>
-    <th>Organisator</th>
-    <th>Join</th>
-  </thead>
-  <tbody>
-    <% @barbecues.each do |barbecue| %>
-      <tr>
-        <td><%= link_to barbecue.title, barbecue %></td>
-        <td><%= barbecue.begin_date %></td>
-        <td><%= barbecue.user.name  %></td>
-        <td><%= link_to 'Join', new_barbecue_supply_path(barbecue) %></td>
-      </tr>
+<div class="container col-md-4">
+  <div class="container">
+    <p>Bring your sausage helps you to organize barbecues by telling your friends what they need to bring ! </p>
+    <div class="container">
+      <%= link_to 'Create a new event', new_barbecue_path, class: "btn btn-lg btn-primary" %>
+  </div>
+    <% if not user_signed_in? %>
+      <%= link_to "Login",  new_user_session_path, class: "btn btn-success" %>
+      <%= link_to "Connect via Facebook",  user_omniauth_authorize_path("facebook"), class: "btn btn-primary" %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+<div class="container col-md-8">
+  <h2>Join an existing barbecue</h2>
+  <table>
+    <thead>
+      <th>Barbecue</th>
+      <th>Date</th>
+      <th>Organisator</th>
+      <th>Join</th>
+    </thead>
+    <tbody>
+      <% @barbecues.each do |barbecue| %>
+        <tr>
+          <td><%= link_to barbecue.title, barbecue %></td>
+          <td><%= barbecue.begin_date %></td>
+          <td><%= barbecue.user.name  %></td>
+          <td><%= link_to 'Join', new_barbecue_supply_path(barbecue) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

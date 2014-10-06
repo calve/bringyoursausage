@@ -21,6 +21,8 @@ $brand-fifth: #E5FCC2;
 
 $link-color: $brand-secondary;
 
+$facebook-color: #454DA8;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -127,4 +129,8 @@ h4 {
 
 .twitter-typeahead {
     width: 100%;
+}
+
+.facebook-connect{
+    background-color: $facebook-color;
 }
