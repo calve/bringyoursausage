@@ -2,6 +2,8 @@
 <h2><%= @barbecue.title %></h2>
 <h3><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %></h3>
 <div class="container col-md-6">
+  <h3>Barbecue description</h3>
+  <%= @barbecue.description %>
   <h3>Barbecue details</h3>
   <p><h4>Organised by:</h4><%= @barbecue.user.name %></p>
   <p><h4>Begin date:</h4><%= @barbecue.begin_date %></p>

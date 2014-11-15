@@ -13,7 +13,7 @@
     <% end %>
     <%= f.text_field :title, hide_label: true, placeholder: "Titre", required: :true %>
     <h3>Barbecue details</h3>
-
+    <%= f.text_area :description, hide_label: true, placeholder: "Description" %>
     <p>
       <h4>Organised by:</h4>  <%= current_user.name if user_signed_in? %>
     </p>

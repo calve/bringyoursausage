@@ -88,6 +88,7 @@ class BarbecuesController < ApplicationController
       params.require(:barbecue)
         .permit(
                 :title,
+                :description,
                 :begin_date,
                 barbecue_ingredient_attributes:
                 [
