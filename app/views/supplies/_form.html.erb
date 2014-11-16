@@ -29,6 +29,16 @@
 
   </div>
   <div class="container col-md-4">
+    <h3>We need</h3>
+    <% if @barbecue.barbecue_ingredient.count() > 0 %>
+      <ul>
+        <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
+          <li><%= barbecue_ingredient.quantity %> <%= barbecue_ingredient.ingredient.title %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      Nothing yet
+    <% end %>
     <h3>We already have</h3>
     <% if @barbecue.supply.count() > 0 %>
       <ul>
