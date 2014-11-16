@@ -14,7 +14,7 @@
  */
 
 $brand-primary: #45ADA8;
-$brand-secondary: #547980 ;
+$brand-secondary: #547980;
 $brand-third: #9DE0AD;
 $brand-fourth: #594F4F;
 $brand-fifth: #E5FCC2;
@@ -36,6 +36,7 @@ h2 {
 
 h3 {
     color: $brand-third;
+    margin-top: 10px;
 }
 
 h4 {
@@ -137,4 +138,11 @@ h4 {
 
 input:focus:invalid{
     border-color:red;
+}
+
+.container {
+    .highlight {
+        border : solid;
+        border-color: $brand-fourth;
+    }
 }
