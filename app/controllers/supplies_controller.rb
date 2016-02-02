@@ -62,9 +62,10 @@ class SuppliesController < ApplicationController
   # DELETE /supplies/1
   # DELETE /supplies/1.json
   def destroy
+    barbecue = @supply.barbecue
     @supply.destroy
     respond_to do |format|
-      format.html { redirect_to supplies_url, notice: 'Supply was successfully destroyed.' }
+      format.html { redirect_to barbecue_path(barbecue), notice: 'Supply was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
