@@ -67,6 +67,11 @@
   </table>
   <h6>Send a photo to your friends</h6>
 </div>
+<div class="container col-md-4">
+  <% @activities.each() do |activity| %>
+    <%= render "activities/show", activity: activity %>
+  <% end %>
+</div>
 <% if user_signed_in? and @barbecue.user.id == current_user.id %>
   <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |
 <% end %>
