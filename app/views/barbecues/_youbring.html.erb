@@ -1,0 +1,8 @@
+<h3>You bring</h3>
+<ul>
+  <% @youbring.each() do |supply| %>
+    <li>
+      <%= supply.quantity %> <%= link_to(supply.ingredient.title, edit_supply_path(supply)) %> <%= link_to("delete", supply_path(supply), method: :delete) %>
+    </li>
+<% end %>
+</ul>
