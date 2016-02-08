@@ -55,3 +55,9 @@ gem 'twitter-typeahead-rails'
 
 # generate qr code for barbecues urls
 gem 'rqrcode'
+
+# apparently the regular one are not real enough
+group :development do
+  gem 'rails_real_favicon'
+end
+
