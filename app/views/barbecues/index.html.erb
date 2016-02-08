@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Begin date</th>
+      <th>Begin at</th>
       <th>Organisator</th>
       <th colspan="1"></th>
     </tr>
@@ -14,7 +14,7 @@
     <% @barbecues.each do |barbecue| %>
       <tr>
         <td><%= link_to barbecue.title, barbecue %></td>
-        <td><%= barbecue.begin_date %></td>
+        <td><%= barbecue.begin_at %></td>
         <td><%= barbecue.user.name %></td>
         <td><% if user_signed_in? && current_user.id == barbecue.user.id %>
           <%= link_to 'Edit', edit_barbecue_path(barbecue) %>

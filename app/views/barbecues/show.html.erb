@@ -8,7 +8,7 @@
   </div>
   <h3>Barbecue details</h3>
   <p><h4>Organised by:</h4><%= @barbecue.user.name %></p>
-  <p><h4>Begin date:</h4><%= @barbecue.begin_date %></p>
+  <p><h4>Begin at:</h4><%= @barbecue.begin_at %></p>
   <h3>Who comes ?</h3>
   <% if @attending_users.count() > 0 %>
     <ul>

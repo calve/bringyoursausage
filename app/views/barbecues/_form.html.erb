@@ -1,4 +1,5 @@
 <div class="container col-md-8">
+  <p>Here we will create an event. First give it a name, a brief description, and set the date</p>
   <%= bootstrap_form_for(@barbecue) do |f| %>
     <% if @barbecue.errors.any? %>
       <div id="error_explanation">
@@ -12,16 +13,11 @@
       </div>
     <% end %>
     <%= f.text_field :title, hide_label: true, placeholder: "Titre", required: :true %>
-    <h3>Barbecue details</h3>
     <%= f.text_area :description, hide_label: true, placeholder: "Description" %>
+    <%= f.datetime_select :begin_at, hide_label: true %>
     <p>
       <h4>Organised by:</h4>  <%= current_user.name if user_signed_in? %>
     </p>
-    <p>
-      <h4>Begin date :</h4>
-      <%= f.date_select :begin_date, hide_label: true %>
-    </p>
-
     <h4>Ingredients</h4>
     <%= f.fields_for :barbecue_ingredient, @barbecue.barbecue_ingredient do |barbecue_ingredient| %>
       <%= render "barbecue_ingredients/line_form", barbecue_ingredient: barbecue_ingredient %>
