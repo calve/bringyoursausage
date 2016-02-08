@@ -1,0 +1,5 @@
+<%= bootstrap_form_for([@barbecue, supply], remote: true) do |f| %>
+  <%= f.number_field :quantity, hide_label: :true, placeholder: "quantity" %>
+  <input class="form-control typeahead" name="supply[ingredient[title]]" placeholder="Type an ingredient" required="required"/>
+  <%= f.submit :class => 'btn btn-success btn-lg'  %>
+<% end %>

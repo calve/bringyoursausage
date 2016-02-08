@@ -1,11 +1,9 @@
 <p id="notice"><%= notice %></p>
 <h2><%= @barbecue.title %></h2>
 <h3><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %></h3>
-<div class="container col-md-6">
-  <div class="highlight">
-    <h3>Barbecue description</h3>
-    <%= @barbecue.description %>
-  </div>
+<div class="container col-md-12">
+  <h3>Barbecue description</h3>
+  <%= @barbecue.description %>
   <h3>Barbecue details</h3>
   <p><h4>Organised by:</h4><%= @barbecue.user.name %></p>
   <p><h4>Begin at:</h4><%= @barbecue.begin_at %></p>
@@ -20,7 +18,7 @@
     Nobody yet
   <% end %>
 </div>
-<div class="container col-md-4">
+<div class="container col-md-12">
   <h3>What we need</h3>
   <% if @barbecue.barbecue_ingredient.count() > 0 %>
     <ul>
@@ -31,23 +29,9 @@
   <% else %>
     <p>Nothing yet</p>
   <% end %>
-  <% if user_signed_in? and @barbecue.user.id == current_user.id %>
-    <%= link_to 'Add ingredients', edit_barbecue_path(@barbecue) %>
-  <% end %>
-  <h3>We already have</h3>
-  <% if @barbecue.supply.count() > 0 %>
-    <ul>
-      <% @barbecue.supply.map(&:ingredient).uniq.each do |ingredient| %>
-        <li>
-          <% if @contributions.include?(ingredient.id) %>
-            <%= pluralize(@contributions[ingredient.id], ingredient.title) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    Nothing yet
-  <% end %>
+  <%= render "barbecue_ingredients/onelineform", barbecue_ingredient: BarbecueIngredient.new() %>
+  <%= link_to 'Add ingredients', edit_barbecue_path(@barbecue) %>
+  <%= render "wehave" %>
   <%= render "youbring" %>
 </div>
 <div class="container col-md-2">
@@ -67,7 +51,8 @@
   </table>
   <h6>Send a photo to your friends</h6>
 </div>
-<div class="container col-md-4">
+<div class="container col-md-12">
+  <h3>Activity</h3>
   <% @activities.each() do |activity| %>
     <%= render "activities/show", activity: activity %>
   <% end %>

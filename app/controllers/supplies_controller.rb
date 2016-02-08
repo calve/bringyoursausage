@@ -38,6 +38,7 @@ class SuppliesController < ApplicationController
       if @supply.save
         format.html { redirect_to @supply.barbecue, notice: 'Supply was successfully created.' }
         format.json { render :show, status: :created, location: @supply }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @supply.errors, status: :unprocessable_entity }
@@ -78,6 +79,6 @@ class SuppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supply_params
-      params[:supply].permit(:quantity, ingredient: [:title])
+      params[:supply].permit(:quantity,:barbecue_id, ingredient: [:title])
     end
 end
