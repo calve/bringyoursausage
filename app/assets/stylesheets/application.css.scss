@@ -13,55 +13,24 @@
  *= require rails_bootstrap_forms
  */
 
-$brand-primary: #45ADA8;
-$brand-secondary: #547980;
-$brand-third: #9DE0AD;
-$brand-fourth: #594F4F;
-$brand-fifth: #E5FCC2;
-
-$link-color: $brand-secondary;
-
+/* $brand-primary: #124343; */
+/* $brand-secondary: #124343; */
+/* $link-color: $brand-secondary; */
 $facebook-color: #454DA8;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-h1 {
-    color: $brand-primary;
-}
-
-h2 {
-    color: $brand-secondary;
-}
-
-h3 {
-    color: $brand-third;
-    margin-top: 10px;
-}
-
-h4 {
-    color: $brand-fourth;
-}
 
 .navbar {
     li {
         a {
             color: black;
         }
-        :hover {
-            background-color: $brand-third !important;
-        }
-        li {
-            :hover {
-                background-color: $brand-third !important;
-            }
-        }
     }
     .active {
-        background-color: $brand-secondary;
+        background-color: white;
         color:$brand-primary;
     }
-    background-color: $brand-primary;
     .logo  {
         max-height: 60px;
     }
@@ -141,11 +110,4 @@ h4 {
 
 input:focus:invalid{
     border-color:red;
-}
-
-.container {
-    .highlight {
-        border : solid;
-        border-color: $brand-fourth;
-    }
 }
