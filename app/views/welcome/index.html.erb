@@ -1,29 +1,11 @@
-<div class="container col-md-4">
-  <div class="container">
-    <p>Bring your sausage helps you to organize barbecues by telling your friends what they need to bring ! </p>
-    <div class="container">
-      <%= link_to 'Create a new event', new_barbecue_path, class: "btn btn-lg btn-primary" %>
-    </div>
-  </div>
-</div>
-<div class="container col-md-8">
-  <h2>Join an existing barbecue</h2>
-  <table>
-    <thead>
-      <th>Barbecue</th>
-      <th>Join</th>
-      <th>Date</th>
-      <th>Organisator</th>
-    </thead>
-    <tbody>
-      <% @barbecues.each do |barbecue| %>
-        <tr>
-          <td><%= link_to barbecue.title, barbecue %></td>
-          <td><%= link_to 'Join', new_barbecue_supply_path(barbecue), class: "btn btn-info btn-sm" %></td>
-          <td><%= barbecue.begin_date %></td>
-          <td><%= barbecue.user.name  %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<h1>Organise a super-cool barbecue !</h1>
+<p>Or a crepe-party, or just an apero. Whatever, really !</p>
+<p>Bring your sausage helps you to organize barbecues by telling your friends what they need to bring</p>
+<ol>
+  <li>Create an event</li>
+  <li>Add the ingredients you already have, add ingredients your friends should grab</li>
+  <li>Invite them and do the do !</li>
+</ol>
+<%= link_to 'Create a new event', new_barbecue_path, class: "btn btn-lg btn-primary" %>
+or
+<%= link_to 'Find an existing event', barbecues_path, class: "btn " %>
