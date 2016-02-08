@@ -23,11 +23,7 @@
       <%= render "barbecue_ingredients/line_form", barbecue_ingredient: barbecue_ingredient %>
     <% end %>
     <div class="actions">
-      <% if user_signed_in? %>
-        <%= f.submit :class => 'btn btn-success btn-lg'  %>
-      <% else %>
-        <%= render "devise/sessions/block_new" %>
-      <% end %>
+      <%= f.submit :class => 'btn btn-success btn-lg'  %>
     </div>
   <% end %>
 </div>

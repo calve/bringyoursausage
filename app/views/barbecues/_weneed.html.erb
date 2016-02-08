@@ -1,0 +1,11 @@
+<h3>What we need</h3>
+<% if @barbecue.barbecue_ingredient.count() > 0 %>
+  <ul>
+    <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
+      <li><%= link_to(pluralize(barbecue_ingredient.quantity, barbecue_ingredient.ingredient.title), edit_barbecue_ingredient_path(barbecue_ingredient)) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Nothing yet</p>
+<% end %>
+<%= render "barbecue_ingredients/onelineform", barbecue_ingredient: BarbecueIngredient.new() %>

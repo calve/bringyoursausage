@@ -1,61 +1,21 @@
 <p id="notice"><%= notice %></p>
 <h2><%= @barbecue.title %></h2>
-<h3><%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %></h3>
-<div class="container col-md-12">
-  <h3>Barbecue description</h3>
-  <%= @barbecue.description %>
-  <h3>Barbecue details</h3>
-  <p><h4>Organised by:</h4><%= @barbecue.user.name %></p>
-  <p><h4>Begin at:</h4><%= @barbecue.begin_at %></p>
-  <h3>Who comes ?</h3>
-  <% if @attending_users.count() > 0 %>
-    <ul>
-      <% @attending_users.each() do |user| %>
-        <li><%= user.name %></li>
-      <% end %>
-    </ul>
+<div class="container col-md-4 barbecue_details">
+  <%= link_to 'I bring something !', new_barbecue_supply_path(@barbecue), class: "btn btn-primary btn-lg" %>
+  <p><% if @barbecue.description %>
+    <%= @barbecue.description %>
   <% else %>
-    Nobody yet
-  <% end %>
-</div>
-<div class="container col-md-12">
-  <h3>What we need</h3>
-  <% if @barbecue.barbecue_ingredient.count() > 0 %>
-    <ul>
-      <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
-        <li><%= link_to(pluralize(barbecue_ingredient.quantity, barbecue_ingredient.ingredient.title), edit_barbecue_ingredient_path(barbecue_ingredient)) %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>Nothing yet</p>
-  <% end %>
-  <%= render "barbecue_ingredients/onelineform", barbecue_ingredient: BarbecueIngredient.new() %>
-  <%= link_to 'Add ingredients', edit_barbecue_path(@barbecue) %>
-  <%= render "wehave" %>
+    No description yet
+  <% end %></p>
+  <p>Begin at <%= @barbecue.begin_at %></p>
+  <p>Organised by <%= @barbecue.user.name %></p>
   <%= render "youbring" %>
+  <%= render "qrcode" %>
 </div>
-<div class="container col-md-2">
-  <h3>QR Code</h3>
-  <table class="qr-code">
-    <% @qr.modules.each_index do |x| -%>
-      <tr>
-        <% @qr.modules.each_index do |y| -%>
-          <% if @qr.dark?(x,y) -%>
-            <td class="black"/>
-          <% else -%>
-            <td class="white"/>
-          <% end -%>
-        <% end -%>
-      </tr>
-    <% end -%>
-  </table>
-  <h6>Send a photo to your friends</h6>
-</div>
-<div class="container col-md-12">
-  <h3>Activity</h3>
-  <% @activities.each() do |activity| %>
-    <%= render "activities/show", activity: activity %>
-  <% end %>
+<div class="container col-md-8 barbecue_main">
+  <%= render "activity" %>
+  <%= render "weneed" %>
+  <%= render "wehave" %>
 </div>
 <% if user_signed_in? and @barbecue.user.id == current_user.id %>
   <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |

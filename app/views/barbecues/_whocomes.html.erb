@@ -1,0 +1,10 @@
+<h3>Who comes ?</h3>
+<% if @attending_users.count() > 0 %>
+  <ul>
+    <% @attending_users.each() do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  Nobody yet
+<% end %>

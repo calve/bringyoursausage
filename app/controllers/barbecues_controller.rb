@@ -44,7 +44,6 @@ class BarbecuesController < ApplicationController
   def create
     @barbecue = Barbecue.new(barbecue_params)
     @barbecue.user = current_user
-    Activity.new(description: "#{current_user} created the event", barbecue: self)
     create_ingredients
 
     respond_to do |format|
