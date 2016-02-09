@@ -47,6 +47,11 @@
         </div>
       </div>
     </nav>
+    <div id="error-div"></div>
+    <div id="signin-div"></div>
+    <% unless user_signed_in? %>
+      <%= render "devise/sessions/new", resource: :user %>
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>
