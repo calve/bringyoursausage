@@ -1,0 +1,6 @@
+<%= bootstrap_form_for([@barbecue, supply], remote: true, class: "form-inline") do |f| %>
+  <%= pluralize(barbecue_ingredient.quantity, barbecue_ingredient.ingredient.title) %>
+  <%= f.hidden_field :quantity, value: barbecue_ingredient.quantity %>
+  <input type="hidden" name="supply[ingredient[title]]" value="<%= barbecue_ingredient.ingredient.title %>"/>
+  <%= f.submit "Add", :class => 'btn btn-success btn-s' %>
+<% end %>

@@ -2,7 +2,7 @@
 <% if @barbecue.barbecue_ingredient.count() > 0 %>
   <ul>
     <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
-      <li><%= link_to(pluralize(barbecue_ingredient.quantity, barbecue_ingredient.ingredient.title), edit_barbecue_ingredient_path(barbecue_ingredient)) %></li>
+      <li><%= render "barbecue_ingredients/onelineshow", barbecue_ingredient: barbecue_ingredient, supply: Supply.new() %></li>
     <% end %>
   </ul>
 <% else %>
