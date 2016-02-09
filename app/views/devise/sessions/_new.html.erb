@@ -1,6 +1,26 @@
-<%= bootstrap_form_for(:user, url: session_path(:user), remote: :true, format: :json) do |f| %>
-  <%= f.email_field :email, hide_label: :true, autofocus: true, placeholder: "user@bys.fr" %>
-  <%= f.password_field :password, hide_label: :true, autocomplete: "off", placeholder: "Password" %>
-  <%= f.submit "Log in"%>
-  <%= link_to "Log with Facebook",  user_omniauth_authorize_path("facebook"), class: "btn btn-primary btn-xs facebook-connect" %>
-<% end %>
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#login" aria-controls="login" data-toggle="tab">Login</a></li>
+  <li role="presentation"><a href="#signup" aria-controls="signup" data-toggle="tab">Signup</a></li>
+</ul>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="login">
+    <%= bootstrap_form_for(:user, url: session_path(:user), remote: :true, format: :json) do |f| %>
+      <%= f.email_field :email, autofocus: true, placeholder: "user@bys.fr" %>
+      <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+      <%= f.submit "Yes, log me in !", class: "btn btn-primary"%>
+      <%= link_to "Log with Facebook",  user_omniauth_authorize_path("facebook"), class: "btn btn-primary btn-xs facebook-connect" %>
+    <% end %>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="signup">
+    <%= bootstrap_form_for(:user, url: registration_path(:user), remote: :true, format: :json) do |f| %>
+      <%= f.email_field :email %>
+      <%= f.text_field :name %>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      
+      <%= f.submit "Yes, create an account !", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

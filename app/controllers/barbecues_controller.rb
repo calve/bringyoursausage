@@ -51,6 +51,7 @@ class BarbecuesController < ApplicationController
       if @barbecue.save
         format.html { redirect_to @barbecue, notice: 'Barbecue was successfully created.' }
         format.json { render :show, status: :created, location: @barbecue }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @barbecue.errors, status: :unprocessable_entity }
@@ -85,33 +86,34 @@ class BarbecuesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_barbecue
-      @barbecue = Barbecue.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_barbecue
+    @barbecue = Barbecue.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def barbecue_params
-      params.require(:barbecue)
-        .permit(
-                :title,
-                :description,
-                :begin_date,
-                barbecue_ingredient_attributes:
-                [
-                 :id,
-                 :quantity,
-                 :_destroy,
-                 ingredient_attributes:
-                 [
-                  :id,
-                  :title
-                 ]
-                ]
-                )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def barbecue_params
+    params.require(:barbecue)
+      .permit(
+        :title,
+        :description,
+        :begin_at,
+        barbecue_ingredient_attributes:
+          [
+            :id,
+            :quantity,
+            :_destroy,
+            ingredient_attributes:
+              [
+                :id,
+                :title
+              ]
+          ]
+      )
+  end
 
-    def create_ingredients
+  def create_ingredients
+    if params[:barbecue][:barbecue_ingredient_attributes]
       params[:barbecue][:barbecue_ingredient_attributes].each() do |index,local_params|
         if !(local_params[:quantity].blank?) && local_params[:ingredient_attributes][:title]
           if local_params[:id]
@@ -126,4 +128,5 @@ class BarbecuesController < ApplicationController
         end
       end
     end
+  end
 end

@@ -14,11 +14,7 @@
     <% end %>
     <%= f.text_field :title, hide_label: true, placeholder: "Titre", required: :true %>
     <%= f.text_area :description, hide_label: true, placeholder: "Description" %>
-    <%= f.datetime_select :begin_at, hide_label: true %>
-    <p>
-      <h4>Organised by:</h4>  <%= current_user.name if user_signed_in? %>
-    </p>
-    <h4>Ingredients</h4>
+    <%= f.text_field :begin_at, hide_label: true, class: "datetimepicker" %>
     <div class="actions">
       <%= f.submit :class => 'btn btn-success btn-lg'  %>
     </div>

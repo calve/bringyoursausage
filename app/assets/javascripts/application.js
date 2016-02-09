@@ -15,6 +15,8 @@
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require twitter/typeahead
+//= require datetimepicker
+//= require jquery-ui/effect-shake
 //= require_tree .
 //= require turbolinks
 
@@ -24,3 +26,8 @@ $( document ).ajaxError(function( event, jqxhr, settings, exception ) {
         $("#login-div").modal()
     }
 });
+$(document).ready(function(){
+    $('.datetimepicker').datetimepicker({inline:true});
+})
+
+

@@ -61,3 +61,8 @@ group :development do
   gem 'rails_real_favicon'
 end
 
+# Extra javascript assets
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
+end
+gem 'jquery-ui-rails'
