@@ -47,6 +47,7 @@ gem 'rails_12factor', group: :production
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'devise-guests'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'

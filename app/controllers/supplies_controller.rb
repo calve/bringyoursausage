@@ -1,6 +1,6 @@
 class SuppliesController < ApplicationController
   before_action :set_supply, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :create]
+  before_action :authenticate_user!, only: [:edit]
 
   # GET /supplies
   # GET /supplies.json
@@ -32,7 +32,7 @@ class SuppliesController < ApplicationController
     @barbecue = Barbecue.find params[:barbecue_id]
     @supply.ingredient = @ingredient
     @supply.barbecue = @barbecue
-    @supply.user = current_user
+    @supply.user = current_or_guest_user
 
     respond_to do |format|
       if @supply.save
