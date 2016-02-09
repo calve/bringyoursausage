@@ -1,1 +1,4 @@
-$('#signin-div').html("Hi again <%= @user.name %>");
+$('#login-div .modal-body')[0].html("Hi again <%= @user.name %> !");
+setTimeout(function(){
+    $('#login-div').modal('hide');
+}, 2000)

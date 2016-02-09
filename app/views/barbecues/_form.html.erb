@@ -1,6 +1,6 @@
 <div class="container col-md-8">
   <p>Here we will create an event. First give it a name, a brief description, and set the date</p>
-  <%= bootstrap_form_for(@barbecue) do |f| %>
+  <%= bootstrap_form_for(@barbecue, remote: :true) do |f| %>
     <% if @barbecue.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@barbecue.errors.count, "error") %> prohibited this barbecue from being saved:</h2>
@@ -19,33 +19,10 @@
       <h4>Organised by:</h4>  <%= current_user.name if user_signed_in? %>
     </p>
     <h4>Ingredients</h4>
-    <%= f.fields_for :barbecue_ingredient, @barbecue.barbecue_ingredient do |barbecue_ingredient| %>
-      <%= render "barbecue_ingredients/line_form", barbecue_ingredient: barbecue_ingredient %>
-    <% end %>
     <div class="actions">
       <%= f.submit :class => 'btn btn-success btn-lg'  %>
     </div>
   <% end %>
 </div>
 <div class="container col-md-4">
-  <h3>We already have</h3>
-  <% if @barbecue.supply.count() > 0 %>
-    <ul>
-      <% @barbecue.supply.each() do |supply| %>
-        <li><%= supply.quantity %> <%= supply.ingredient.title %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    Nothing yet
-  <% end %>
-  <h3>Who comes ?</h3>
-  <% if @attending_users %>
-    <ul>
-      <% @attending_users.each() do |user| %>
-        <li><%= user.name %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>Nobody yet</p>
-  <% end %>
 </div>

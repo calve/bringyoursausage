@@ -20,6 +20,7 @@
 
 $( document ).ajaxError(function( event, jqxhr, settings, exception ) {
     if ( jqxhr.status== 401 ) {
-        $( "#error-div" ).text(jqxhr.responseText);
+        $("#login-error").text(jqxhr.responseText)
+        $("#login-div").modal()
     }
 });

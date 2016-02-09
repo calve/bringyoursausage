@@ -1,5 +1,6 @@
-<%= bootstrap_form_for(:user, url: session_path(:user), layout: :inline, remote: :true, format: :json) do |f| %>
+<%= bootstrap_form_for(:user, url: session_path(:user), remote: :true, format: :json) do |f| %>
   <%= f.email_field :email, hide_label: :true, autofocus: true, placeholder: "user@bys.fr" %>
   <%= f.password_field :password, hide_label: :true, autocomplete: "off", placeholder: "Password" %>
   <%= f.submit "Log in"%>
+  <%= link_to "Log with Facebook",  user_omniauth_authorize_path("facebook"), class: "btn btn-primary btn-xs facebook-connect" %>
 <% end %>

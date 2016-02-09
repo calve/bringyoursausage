@@ -1,5 +1,6 @@
 class BarbecuesController < ApplicationController
   before_action :set_barbecue, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :create]
   require 'rqrcode'
 
   # GET /barbecues

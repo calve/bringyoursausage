@@ -11,9 +11,8 @@
   <body>
     <%= render "navigation" %>
     <div id="error-div"></div>
-    <div id="signin-div"></div>
     <% unless user_signed_in? %>
-      <%= render "devise/sessions/new", resource: :user %>
+      <%= render "loginmodal" %>
     <% end %>
     <div class="container">
       <%= yield %>
