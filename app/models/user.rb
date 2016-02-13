@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   :omniauthable
 
   has_many :barbecues
-  has_many :supply
+  has_many :activities
+  has_many :supplies
   has_many :provided_supply, :through => :supply
 
   def self.from_omniauth(auth)
@@ -24,5 +25,28 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def annex_and_destroy!(guest)
+    transaction do
+      #skip_confirmation_notification!
+
+      guest.activities.each do |activity|
+        activity.user = self
+        activity.save
+      end
+      guest.barbecues.each do |barbecue|
+        barbecue.user = self
+        barbecue.save
+      end
+      guest.supplies.each do |supply|
+        supply.user = self
+        supply.save
+      end
+      guest.delete
+      self.save!
+    end
+
+    self
   end
 end

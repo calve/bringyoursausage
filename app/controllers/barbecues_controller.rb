@@ -1,6 +1,6 @@
 class BarbecuesController < ApplicationController
   before_action :set_barbecue, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :create]
+  before_action :authenticate_user!, only: [:edit]
   require 'rqrcode'
 
   # GET /barbecues
@@ -44,7 +44,7 @@ class BarbecuesController < ApplicationController
   # POST /barbecues.json
   def create
     @barbecue = Barbecue.new(barbecue_params)
-    @barbecue.user = current_user
+    @barbecue.user = current_or_guest_user
     create_ingredients
 
     respond_to do |format|
