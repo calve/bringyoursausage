@@ -13,9 +13,15 @@
   <%= render "qrcode" %>
 </div>
 <div class="container col-md-8 barbecue_main">
+  <div class="row">
+    <div class="container col-md-6">
+      <%= render "weneed" %>
+    </div>
+    <div class="container col-md-6">
+      <%= render "wehave" %>
+    </div>
+  </div>
   <%= render "activity" %>
-  <%= render "weneed" %>
-  <%= render "wehave" %>
 </div>
 <% if user_signed_in? and @barbecue.user.id == current_user.id %>
   <%= link_to 'Edit', edit_barbecue_path(@barbecue) %> |

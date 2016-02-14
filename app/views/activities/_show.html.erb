@@ -1,1 +1,1 @@
-<p class="activity"><%= format_message(activity) %></p>
+<p class="activity small"><%= format_message(activity) %> (<%= distance_of_time_in_words(activity.created_at,  Time.now) %> ago)</p>

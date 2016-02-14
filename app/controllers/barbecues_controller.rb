@@ -15,7 +15,7 @@ class BarbecuesController < ApplicationController
     @attending_users = User.joins(:supply).where(supplies: {barbecue_id: @barbecue.id}).distinct
     # @contributions is an array associating ingredient_id to their total quantities
     @contributions = Supply.where(supplies: {barbecue_id: @barbecue.id}).group(:ingredient_id).sum(:quantity)
-    @activities = Activity.where(barbecue_id: @barbecue.id)
+    @activities = Activity.where(barbecue_id: @barbecue.id).order("created_at DESC")
     if current_user
       @youbring = Supply.where(user: current_user).where(barbecue_id: @barbecue.id)
     else
