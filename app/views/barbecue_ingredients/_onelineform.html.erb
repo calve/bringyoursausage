@@ -1,7 +1,7 @@
 <%= bootstrap_form_for([@barbecue, barbecue_ingredient], remote: true, class: "form-inline") do |f| %>
   <div class="row">
     <div class="col-xs-3">
-      <%= f.number_field :quantity, hide_label: :true, placeholder: "quantity", class: "quantit" %>
+      <%= f.number_field :quantity, hide_label: :true, placeholder: "quantity", class: "quantity" %>
     </div>
     <div class="col-xs-6">
       <input class="form-control typeahead" name="barbecue_ingredient[ingredient[title]]" placeholder="Type an ingredient" required="required"/>

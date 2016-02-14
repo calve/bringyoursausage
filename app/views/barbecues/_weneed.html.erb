@@ -1,6 +1,6 @@
 <h3>What we need</h3>
 <% if @barbecue.barbecue_ingredient.count() > 0 %>
-  <ul>
+  <ul id="weeneed">
     <% @barbecue.barbecue_ingredient.each() do |barbecue_ingredient| %>
       <li><%= render "barbecue_ingredients/onelineshow", barbecue_ingredient: barbecue_ingredient, supply: Supply.new() %></li>
     <% end %>

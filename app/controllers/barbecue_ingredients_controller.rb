@@ -65,6 +65,7 @@ class BarbecueIngredientsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to barbecue_ingredients_url, notice: 'Barbecue ingredient was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
