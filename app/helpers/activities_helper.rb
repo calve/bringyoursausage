@@ -18,7 +18,7 @@ module ActivitiesHelper
         return "Notfound"
       end
     rescue => ex
-      return "Error formatting activity #{activity} : #{ex}"
+      return "Error formatting activity for #{activity.action} (#{user.name}) : #{ex}"
     end
   end
 end
