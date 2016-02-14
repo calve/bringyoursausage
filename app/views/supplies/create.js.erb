@@ -1,1 +1,4 @@
 $('#we-have').append("<li><%= @supply.quantity %> <%= @supply.ingredient.title %></li>")
+<% if current_or_guest_user.guest and current_or_guest_user.name == "Guest" %>
+$('#name-div').modal()
+<% end %>

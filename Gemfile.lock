@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/calve/devise-guests
+  revision: 4814373627b17341df0f1336b5f2fac627ec08f0
+  specs:
+    devise-guests (0.5.0)
+      devise
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -61,8 +68,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-guests (0.5.0)
-      devise
     domain_name (0.5.20160128)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -219,7 +224,7 @@ DEPENDENCIES
   bootstrap_form
   coffee-rails (~> 4.0.0)
   devise
-  devise-guests
+  devise-guests!
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks

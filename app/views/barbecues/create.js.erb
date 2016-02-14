@@ -1,1 +1,4 @@
 window.location = '<%= barbecue_path(@barbecue) %>'
+<% if current_or_guest_user.guest and current_or_guest_user.name == "Guest" %>
+$('#name-div').modal()
+<% end %>

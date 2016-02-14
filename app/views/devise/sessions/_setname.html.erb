@@ -1,0 +1,5 @@
+<%= bootstrap_form_for(:user, url: user_registration_path, method: :put, remote: :true, format: :json) do |f| %>
+  <%= f.text_field :name, autofocus: true, placeholder: "What's your name" %>
+  <%= f.submit "Remember my name", class: "btn btn-primary"%>
+  <%= link_to "Log with Facebook",  user_omniauth_authorize_path("facebook"), class: "btn btn-primary btn-xs facebook-connect" %>
+<% end %>

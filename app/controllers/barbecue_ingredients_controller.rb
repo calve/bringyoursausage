@@ -27,15 +27,19 @@ class BarbecueIngredientsController < ApplicationController
   # POST /barbecue_ingredients
   # POST /barbecue_ingredients.json
   def create
-    @barbecue_ingredient = BarbecueIngredient.new(barbecue_ingredient_params)
+    ingredient = Ingredient.find_or_initialize_by(title: barbecue_ingredient_params[:ingredient][:title])
+    barbecue = Barbecue.find params[:barbecue_id]
+    @barbecue_ingredient = BarbecueIngredient.new(barbecue: barbecue, ingredient: ingredient, quantity: barbecue_ingredient_params[:quantity])
 
     respond_to do |format|
       if @barbecue_ingredient.save
-        format.html { redirect_to @barbecue_ingredient, notice: @barbecue_ingredient.quartity+' '+@barbecue_ingredient.ingredient.title+' were added to '+ @barbecue_ingredient.barbecue.title}
+        format.html { redirect_to @barbecue_ingredient, notice: 'Added #{@barbecue_ingredient.quantity} #{@barbecue_ingredient.ingredient.title} '}
         format.json { render :show, status: :created, location: @barbecue_ingredient }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @barbecue_ingredient.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -76,8 +80,7 @@ class BarbecueIngredientsController < ApplicationController
         .permit(
                 :quantity,
                 :barbecue_id,
-                :ingredient_id,
-                ingredient_attributes:
+                ingredient:
                 [
                  :id,
                  :title

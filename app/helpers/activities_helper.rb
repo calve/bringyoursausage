@@ -5,10 +5,8 @@ module ActivitiesHelper
       user = activity.user
       case activity.action
       when "create_ingredient"
-        ingredient = activity.extra_data.barbecue_ingredient_id
-        quantity = ingredient.title
-        ingredient = ingredient.title
-        return "#{user.name} added #{quantity} #{ingredient}"
+        ingredient = BarbecueIngredient.find activity.extra_data[:barbecue_ingredient_id]
+        return "#{user.name} added #{ingredient.quantity} #{ingredient.ingredient.title}"
       when "create_supply"
         supply = Supply.find(activity.extra_data[:supply_id])
         quantity = supply.quantity
